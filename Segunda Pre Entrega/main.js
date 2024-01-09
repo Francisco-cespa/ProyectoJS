@@ -16,25 +16,25 @@ const productos = [
 
 const carrito = []
 
-// let total = 0;
-
 let noDisponible = true;
+
+// const sumar = (x, y) => x + y;
 
 function compra () {
 
-    let seleccion = prompt("selecione que producto desea comprar");
+    let seleccion = prompt("Selecione el producto que desea comprar \n_Lavandina.\n_Jabon.\n_Detergente.\n_Yerba.\n_Agua.\n_Gaseosa.\n_Snaks.\n_Cepillo\n_Carne\n_Alcohol\n_Pasta de diente.\n_Trapo.\n_Shampo.").toLocaleLowerCase();
     
     const producto = productos.find((item) => item.nombre === seleccion);
     
     
     if (producto) {
         alert (`
-        nombre: ${producto.nombre};
-        precio: ${producto.precio};
-        categoria: ${producto.categoria};
+        Nombre: ${producto.nombre};
+        Precio: ${producto.precio};
+        Categoria: ${producto.categoria};
         `);
 
-        let agregar = prompt(`desea comprar el producto? si/no`)
+        let agregar = prompt(`desea comprar el producto? Si/No`).toLocaleLowerCase();
         
         switch (agregar) {
             case "si":
@@ -42,29 +42,24 @@ function compra () {
 
                 noDisponible = false;
 
-                let otroProducto = prompt("¿desea agregar otro producto? si/no");
-                
-                agregarOtro();
-
-                function agregarOtro () {
+                let otroProducto = prompt("¿desea agregar otro producto? Si/No").toLocaleLowerCase();
 
                 if (otroProducto === "si") {
-                 compra()
+                 compra();
                 } else if( otroProducto === "no") {
                     alert ("gracias por visitar nuestra pagina.")
-
+                    
                 } else {
-                   alert ("seleccione una respuesta correcta!") 
-                }}
+                    alert ("seleccione una respuesta correcta!");
+                    compra();
+                   
+                }
                 
         }
-        // if (agregar === `si`) {
-        //     carrito.push(producto);
-        // }
-        
 
     } else {
-    alert (`producto no disponible`)
+    alert (`producto no disponible`);
+    noDisponible = true;
     }
     
 }
@@ -73,8 +68,53 @@ while (noDisponible === true) {
     compra();
 }
 
+console.log(carrito);
 
-const total = carrito.reduce ((acum, item) => acum + item.precio + 0);
+const precios = carrito.map((item) => item.precio);
+console.log(precios);
+
+const totalCarrito = precios.reduce((acum, item) => acum + item + 0);
+console.log(totalCarrito);
+
+
+const totalProductos = carrito.map((item) => item.nombre) 
+
+
+
+const costoEnvio = () => { 
+    if (totalCarrito > 3000) {
+      return "y El envio es gratis"
+    } else {
+       return "y El costo del envio es de 2500$"
+    }
+}
+
+alert(`Sus productos: ${totalProductos}, El total de su compra es de ${totalCarrito}$ ${costoEnvio()}`);
+
+const pagoFinal = () => {
+
+    let pago = prompt(`¿como desea realizar el pago? \nDebito.\nTarjeta de credito. `).toLowerCase();
+    let resultado = "";
+
+    switch(pago) {
+        case ("debito"):
+            resultado = `pago realizado, total:${totalCarrito}$`;
+            return alert(resultado);
+        case(`tarjeta de credito`):
+            resultado = `pago realizado, total:${totalCarrito * 1.21}$`;
+            return alert(resultado);
+        default:
+        pagoFinal();
+    }
+}
+
+pagoFinal();
+
+// function compraRealizada() {
+//  switch (pago)
+
+// }
+
 
 // const carritoCompras = () => 
 
@@ -86,4 +126,4 @@ const total = carrito.reduce ((acum, item) => acum + item.precio + 0);
 // }
 
 // console.log(carrito);
-console.log(total);
+// console.log(totalCarrito);

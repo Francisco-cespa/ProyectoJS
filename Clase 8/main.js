@@ -1,24 +1,24 @@
-const nombres = ["francisco", "romina", "nicolas", "guido", "maria", "lautaro"];
+// const nombres = ["francisco", "romina", "nicolas", "guido", "maria", "lautaro"];
 
-const premios = ["televisor", "computadora", "parlantes"];
-
-
+// const premios = ["televisor", "computadora", "parlantes"];
 
 
-const nombreRandom = () => {
-    let nombreGanador = Math.floor(Math.random() * nombres.length)
-    return nombres[nombreGanador];
-}
 
-const premioRandom = () => {
-    let premioGanado = Math.floor(Math.random() * premios.length)
 
-  return premios[premioGanado];
-}
+// const nombreRandom = () => {
+//     let nombreGanador = Math.floor(Math.random() * nombres.length)
+//     return nombres[nombreGanador];
+// }
 
-console.log(
-  `Nombre del ganador ${nombreRandom()} Premio ${premioRandom()}`
-);
+// const premioRandom = () => {
+//     let premioGanado = Math.floor(Math.random() * premios.length)
+
+//   return premios[premioGanado];
+// }
+
+// console.log(
+//   `Nombre del ganador ${nombreRandom()} Premio ${premioRandom()}`
+// );
 
 // console.log(nombreRandom());
 
@@ -51,8 +51,8 @@ console.log(
 
 //DATE
 // console.log(Date());
-// let navidad = new Date(2023, 11, 24, 23, 59, 59);
-// console.log(navidad);
+let navidad = new Date(2023, 11, 24, 23, 59, 59);
+console.log(navidad);
 
 // distintos tipos de clase para representar date
 
@@ -60,10 +60,11 @@ console.log(
 // console.log(navidad);
 // console.log(navidad.toDateString());
 
-// console.log(navidad.toLocaleString());
+console.log(Date.toLocaleString());
 
 // console.log(navidad.toLocaleDateString());
 // console.log(navidad.toTimeString());
 // console.log(navidad.getFullYear());
 // console.log(navidad.getMonth());
-// console.log(navidad.getDay());
+
+console.log(navidad.getDay());
