@@ -82,11 +82,12 @@ const totalProductos = carrito.map((item) => item.nombre)
 
 
 const costoEnvio = () => { 
-    if (totalCarrito > 3000) {
-      return "y El envio es gratis"
-    } else {
-       return "y El costo del envio es de 2500$"
-    }
+    // if (totalCarrito > 3000) {
+    //   return "y El envio es gratis"
+    // } else {
+    //    return "y El costo del envio es de 2500$"
+    // }
+    totalCarrito > 3000 ? "y El envio es gratis" : "El costo del envio es de 2500$"
 }
 
 alert(`Sus productos: ${totalProductos}, El total de su compra es de ${totalCarrito}$ ${costoEnvio()}`);

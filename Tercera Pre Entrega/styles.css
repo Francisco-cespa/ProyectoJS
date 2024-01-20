@@ -1,0 +1,16 @@
+/* .card {
+    margin: 2px;
+    color: black;
+    width: 15px;
+    height: 25px;
+} */
+
+.galeriaProductos {
+    margin: 5px;
+    display: flex;
+    flex-wrap: wrap ;
+}
+
+.tarjetas {
+    margin: 5px;
+}

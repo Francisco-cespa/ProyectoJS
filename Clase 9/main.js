@@ -30,12 +30,19 @@ const productos = [
 
 let contenedor = document.getElementById("contenedor");
 
+
 productos.forEach((item) => {
-    let div = document.createElement("div");
-    div.innerHTML =`
-    <p> nombre: ${item.nombre} </p>
-    <p> precio:  ${item.precio} </p>
+    let div = document.createElement("div")
+    div.className= "card"
+    div.innerHTML =`<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+    <h5 class="card-title">${item.nombre}</h5>
     <p> categoria: ${item.categoria} </p>
+    <p class="card-text">$${item.precio} </p>
+    <a href="#" class="btn btn-primary">Agregar a carrito</a>
+      </div>
+      </div>
     `
     contenedor.append(div);
 });
