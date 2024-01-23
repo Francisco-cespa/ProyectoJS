@@ -16,14 +16,11 @@ const productos = [
 
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-
 const divProductos = document.getElementById("divProductos");
-
 
 const mostrarProductos = () => {
 
 productos.forEach((productos) => {
-    
     const {nombre, precio, categoria, imagen, id} = productos
     
     let card = document.createElement("div");
@@ -43,7 +40,6 @@ productos.forEach((productos) => {
     divProductos.appendChild(card)
 
 });
-
 }
 
 mostrarProductos();
@@ -63,22 +59,16 @@ const botonComprar = document.addEventListener("click", agregarAlCarrito);
 const precioTotal = document.getElementById("precioTotal");
 
 const mostrarCarrito = () => {
-    const divCarrito = document.getElementById("divCarrito"); //preguntar si esta bien que sea una variable
+    const divCarrito = document.getElementById("divCarrito");
     divCarrito.innerHTML = "<h2> Carrito: </h2>";
     carrito.forEach((productos) => {
         divCarrito.innerHTML += `
         <p>${productos.nombre} $${productos.precio}</p>
         `
     });
-    // console.log(carrito.reduce((acum, item) => acum + item.precio,
-    // 0,
-    // ));
-    // console.log(carrito);
 
-    
     precioTotal.innerText = "total carrito = $ " + carrito.reduce((acum, item) => acum + item.precio,
     0,);
-    
 }
 
 const vaciarCarrito = document.getElementById("vaciarCarrito");
@@ -86,7 +76,6 @@ const vaciarCarrito = document.getElementById("vaciarCarrito");
 function guardarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
-
 
 
 function limpiarCarrito() {
@@ -97,76 +86,13 @@ function limpiarCarrito() {
     divCarrito.innerHTML = " "
     guardarCarrito();
     Swal.fire({
-            //     title: "desea vaciar su carrito?",
-            //     text: "no va a poder revertir esto.",
-            //     icon: "warning",
-            //     showCancelButton: true,
-            //     confirmButtonColor: "#3085d6",
-            //     cancelButtonColor: "#d33",
-            //     confirmButtonText: "vaciar carrito"
-            //   }).then((result) => {
-            //     if (result.isConfirmed) {
-            //       Swal.fire({
-                    title: "vaciado.",
-                    text: "su carrito esta vacio!.",
-                    icon: "success"
-                  });
-                }
-            //   });
+            
+        title: "vaciado.",
+        text: "su carrito esta vacio!.",
+        icon: "success"
+    });
+}
     
-    // mostrarCarrito();
-// }
-
 const vaciar = vaciarCarrito.addEventListener("click", limpiarCarrito)
 
-
-
-
-// const alert = vaciarCarrito.addEventListener("click", () => {
-//     Swal.fire({
-//         title: "desea vaciar su carrito?",
-//         text: "no va a poder revertir esto.",
-//         icon: "warning",
-//         showCancelButton: true,
-//         confirmButtonColor: "#3085d6",
-//         cancelButtonColor: "#d33",
-//         confirmButtonText: "vaciar carrito"
-//       }).then((result) => {
-//         if (result.isConfirmed) {
-//           Swal.fire({
-//             title: "vaciado.",
-//             text: "su carrito esta vacio!.",
-//             icon: "success"
-//           });
-//         }
-//       });
-
-// })
-
-
-
-
-// const botonEliminar = botonEliminar.addEventListener('click', function() {
-//          eliminarDelCarrito(index);
-//          mostrarCarrito();
-//     });
-
-    // elemento.appendChild(botonEliminar);
-    // carritoElemento.appendChild(elemento);
-
-
-
-
-
-// const resetCarrito = () => {
-//     carrito = [];
-//     mostrarCarrito()
-// }
-
-// const vaciarCarrito = document.getElementById("vaciarCarrito");
-// vaciarCarrito.addEventListener("click", () => resetCarrito )
-
-
-
 mostrarCarrito();
-
