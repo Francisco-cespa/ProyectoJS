@@ -5,6 +5,13 @@
     height: 25px;
 } */
 
+.body {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+
+}
+
 .galeriaProductos {
     margin: 5px;
     display: flex;

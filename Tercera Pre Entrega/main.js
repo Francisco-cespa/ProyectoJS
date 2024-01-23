@@ -1,146 +1,172 @@
 const productos = [
-    {nombre:"lavandina", precio: 700, categoria:"limpieza" ,Imagen:""},
-    {nombre:"jabon", precio: 300, categoria:"higiene", Imagen:""},
-    {nombre:"detergente", precio:400,categoria:"limpieza", Imagen:""}, 
-    {nombre:"yerba", precio:800, categoria:"consumo", Imagen:""},
-    {nombre:"agua", precio:700, categoria:"consumo", Imagen:""},
-    {nombre:"gaseosa", precio:900, categoria:"consumo", Imagen:""},
-    {nombre:"snacks", precio:1000, categoria:"consumo", Imagen:""},
-    {nombre:"cepillo", precio:1200, categoria:"limpieza", Imagen:""},
-    {nombre:"carne", precio:1700, categoria:"consumo", Imagen:""},
-    {nombre:"alcohol", precio:700, categoria:"higiene", Imagen:""},
-    {nombre:"pasta de dientes", precio:600, categoria:"higiene", Imagen:""},
-    {nombre:"trapo", precio:200, categoria:"limpieza", Imagen:""},
-    {nombre:"shampo", precio:1100, categoria:"higiene", Imagen:""},
+    {nombre:"lavandina", precio: 700, categoria:"limpieza" ,imagen:"./imagenes/Lavandina.png", id:"1"},
+    {nombre:"jabon", precio: 300, categoria:"higiene", imagen:"./imagenes/jabon.jpg", id:"2"},
+    {nombre:"detergente", precio:400,categoria:"limpieza", imagen:"./imagenes/Detergente.webp", id:"3"}, 
+    {nombre:"yerba", precio:800, categoria:"consumo", imagen:"./imagenes/yerba.jpg", id:"4"},
+    {nombre:"agua", precio:700, categoria:"consumo", imagen:"./imagenes/agua.jpg", id:"5"},
+    {nombre:"gaseosa", precio:900, categoria:"consumo", imagen:"./imagenes/gaseosa.webp", id:"6"},
+    {nombre:"snacks", precio:1000, categoria:"consumo", imagen:"./imagenes/snacks.webp", id:"7"},
+    {nombre:"cepillo", precio:1200, categoria:"limpieza", imagen:"./imagenes/cepillo.webp", id:"8"},
+    {nombre:"carne", precio:1700, categoria:"consumo", imagen:"./imagenes/carne.jpg", id:"9"},
+    {nombre:"alcohol", precio:700, categoria:"higiene", imagen:"./imagenes/alcohol.webp", id:"10"},
+    {nombre:"pasta de dientes", precio:600, categoria:"higiene", imagen:"./imagenes/pasta de dientes.jpg", id:"11"},
+    {nombre:"trapo", precio:200, categoria:"limpieza", imagen:"./imagenes/trapo.jpg", id:"13"},
+    {nombre:"shampoo", precio:1100, categoria:"higiene", imagen:"./imagenes/shampoo.png", id:"14"},
 ];
 
-const carrito = []
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 
-let noDisponible = true;
+const divProductos = document.getElementById("divProductos");
 
-let divProductos = document.getElementById("divProductos");
+
+const mostrarProductos = () => {
 
 productos.forEach((productos) => {
     
-    const {nombre, precio, categoria, Imagen} = productos
+    const {nombre, precio, categoria, imagen, id} = productos
     
     let card = document.createElement("div");
     
     card.className = "tarjetas"
     card.innerHTML = `
     <div class="card" style="width: 18rem;">
-    <img src="${Imagen}" class="card-img-top">
+    <img src="${imagen}" class="card-img-top">
     <div class="card-body">
     <h5 class="card-title">${nombre}</h5>
     <p> categoria: ${categoria} </p>
     <p class="card-text">$${precio} </p>
-    <button id="comprar" class="btn btn-primary">Agregar a carrito</button>
+    <button id="${id}" class="btn btn-secondary comprar">Agregar a carrito</button>
     </div>
     </div>
     `
     divProductos.appendChild(card)
-    
+
 });
 
-const agregarCarrito = () => {
-    const producto = productos.find((item) => item.nombre);
-    carrito.push(producto);
 }
 
-const botonComprar = document.getElementById("comprar")
+mostrarProductos();
 
-botonComprar.addEventListener("click", agregarCarrito)
+const agregarAlCarrito = e => {
+    if (e.target.classList.contains('comprar')) {
+        const id = e.target.id;
+        const producto = productos.find(producto => producto.id == id);
+        carrito.push(producto);
+        mostrarCarrito();
+        guardarCarrito();
+    }
+}
 
-console.log(carrito);
+const botonComprar = document.addEventListener("click", agregarAlCarrito);
 
-// function compra () {
+const precioTotal = document.getElementById("precioTotal");
+
+const mostrarCarrito = () => {
+    const divCarrito = document.getElementById("divCarrito"); //preguntar si esta bien que sea una variable
+    divCarrito.innerHTML = "<h2> Carrito: </h2>";
+    carrito.forEach((productos) => {
+        divCarrito.innerHTML += `
+        <p>${productos.nombre} $${productos.precio}</p>
+        `
+    });
+    // console.log(carrito.reduce((acum, item) => acum + item.precio,
+    // 0,
+    // ));
+    // console.log(carrito);
+
     
-    //     let seleccion = prompt("Selecione el producto que desea comprar \n_Lavandina.\n_Jabon.\n_Detergente.\n_Yerba.\n_Agua.\n_Gaseosa.\n_Snaks.\n_Cepillo\n_Carne\n_Alcohol\n_Pasta de diente.\n_Trapo.\n_Shampo.").toLocaleLowerCase();
+    precioTotal.innerText = "total carrito = $ " + carrito.reduce((acum, item) => acum + item.precio,
+    0,);
     
-    //     const producto = productos.find((item) => item.nombre === seleccion);
+}
+
+const vaciarCarrito = document.getElementById("vaciarCarrito");
+
+function guardarCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
+}
+
+
+
+function limpiarCarrito() {
+    carrito = [];
+    precioTotal.innerText = "total carrito = $ " + carrito.reduce((acum, item) => acum + item.precio,
+    0,);
+    const divCarrito = document.getElementById("divCarrito");
+    divCarrito.innerHTML = " "
+    guardarCarrito();
+    Swal.fire({
+            //     title: "desea vaciar su carrito?",
+            //     text: "no va a poder revertir esto.",
+            //     icon: "warning",
+            //     showCancelButton: true,
+            //     confirmButtonColor: "#3085d6",
+            //     cancelButtonColor: "#d33",
+            //     confirmButtonText: "vaciar carrito"
+            //   }).then((result) => {
+            //     if (result.isConfirmed) {
+            //       Swal.fire({
+                    title: "vaciado.",
+                    text: "su carrito esta vacio!.",
+                    icon: "success"
+                  });
+                }
+            //   });
     
-    
-    //     if (producto) {
-        //         alert (`
-        //         Nombre: ${producto.nombre};
-        //         Precio: ${producto.precio};
-//         Categoria: ${producto.categoria};
-//         `);
+    // mostrarCarrito();
+// }
 
-//         let agregar = prompt(`desea comprar el producto? Si/No`).toLocaleLowerCase();
-        
-//         switch (agregar) {
-//             case "si":
-//                 carrito.push(producto);
+const vaciar = vaciarCarrito.addEventListener("click", limpiarCarrito)
 
-//                 noDisponible = false;
 
-//                 let otroProducto = prompt("¿desea agregar otro producto? Si/No").toLocaleLowerCase();
 
-//                 if (otroProducto === "si") {
-//                  compra();
-//                 } else if( otroProducto === "no") {
-//                     alert ("gracias por visitar nuestra pagina.")
-                    
-//                 } else {
-//                     alert ("seleccione una respuesta correcta!");
-//                     compra();
-                   
-//                 }
-                
+
+// const alert = vaciarCarrito.addEventListener("click", () => {
+//     Swal.fire({
+//         title: "desea vaciar su carrito?",
+//         text: "no va a poder revertir esto.",
+//         icon: "warning",
+//         showCancelButton: true,
+//         confirmButtonColor: "#3085d6",
+//         cancelButtonColor: "#d33",
+//         confirmButtonText: "vaciar carrito"
+//       }).then((result) => {
+//         if (result.isConfirmed) {
+//           Swal.fire({
+//             title: "vaciado.",
+//             text: "su carrito esta vacio!.",
+//             icon: "success"
+//           });
 //         }
+//       });
 
-//     } else {
-//     alert (`producto no disponible`);
-//     noDisponible = true;
-//     }
-    
+// })
+
+
+
+
+// const botonEliminar = botonEliminar.addEventListener('click', function() {
+//          eliminarDelCarrito(index);
+//          mostrarCarrito();
+//     });
+
+    // elemento.appendChild(botonEliminar);
+    // carritoElemento.appendChild(elemento);
+
+
+
+
+
+// const resetCarrito = () => {
+//     carrito = [];
+//     mostrarCarrito()
 // }
 
-// while (noDisponible === true) {
-//     compra();
-// }
-
-// console.log(carrito);
-
-// const precios = carrito.map((item) => item.precio);
-// console.log(precios);
-
-// const totalCarrito = precios.reduce((acum, item) => acum + item + 0);
-// console.log(totalCarrito);
-
-
-// const totalProductos = carrito.map((item) => item.nombre) 
+// const vaciarCarrito = document.getElementById("vaciarCarrito");
+// vaciarCarrito.addEventListener("click", () => resetCarrito )
 
 
 
-// const costoEnvio = () => { 
-//     // if (totalCarrito > 3000) {
-//     //   return "y El envio es gratis"
-//     // } else {
-//     //    return "y El costo del envio es de 2500$"
-//     // }
-//     totalCarrito > 3000 ? "y El envio es gratis" : "El costo del envio es de 2500$"
-// }
+mostrarCarrito();
 
-// alert(`Sus productos: ${totalProductos}, El total de su compra es de ${totalCarrito}$ ${costoEnvio()}`);
-
-// const pagoFinal = () => {
-
-//     let pago = prompt(`¿como desea realizar el pago? \nDebito.\nTarjeta de credito. `).toLowerCase();
-//     let resultado = "";
-
-//     switch(pago) {
-//         case ("debito"):
-//             resultado = `pago realizado, total:${totalCarrito}$`;
-//             return alert(resultado);
-//         case(`tarjeta de credito`):
-//             resultado = `pago realizado, total:${totalCarrito * 1.21}$`;
-//             return alert(resultado);
-//         default:
-//         pagoFinal();
-//     }
-// }
-
-// pagoFinal();
