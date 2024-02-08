@@ -1,0 +1,15 @@
+[
+    {"nombre":"lavandina", "precio": 700, "categoria":"limpieza" ,"imagen":"./imagenes/Lavandina.png", "id":"1"},
+    {"nombre":"jabon", "precio": 300, "categoria":"higiene", "imagen":"./imagenes/jabon.jpg", "id":"2"},
+    {"nombre":"detergente", "precio":400,"categoria":"limpieza", "imagen":"./imagenes/Detergente.webp", "id":"3"}, 
+    {"nombre":"yerba", "precio":800, "categoria":"consumo", "imagen":"./imagenes/yerba.jpg", "id":"4"},
+    {"nombre":"agua", "precio":700, "categoria":"consumo", "imagen":"./imagenes/agua.jpg", "id":"5"},
+    {"nombre":"gaseosa", "precio":900, "categoria":"consumo", "imagen":"./imagenes/gaseosa.webp", "id":"6"},
+    {"nombre":"snacks", "precio":1000, "categoria":"consumo", "imagen":"./imagenes/snacks.webp", "id":"7"},
+    {"nombre":"cepillo", "precio":1200, "categoria":"limpieza", "imagen":"./imagenes/cepillo.webp", "id":"8"},
+    {"nombre":"carne", "precio":1700,"categoria":"consumo", "imagen":"./imagenes/carne.jpg", "id":"9"},
+    {"nombre":"alcohol", "precio":700, "categoria":"higiene", "imagen":"./imagenes/alcohol.webp","id":"10"},
+    {"nombre":"pasta de dientes", "precio":600, "categoria":"higiene", "imagen":"./imagenes/pasta de dientes.jpg", "id":"11"},
+    {"nombre":"trapo", "precio":200, "categoria":"limpieza", "imagen":"./imagenes/trapo.jpg", "id":"13"},
+    {"nombre":"shampoo", "precio":1100, "categoria":"higiene", "imagen":"./imagenes/shampoo.png", "id":"14"}
+]
