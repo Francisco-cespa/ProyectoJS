@@ -11,5 +11,5 @@
     {"nombre":"alcohol", "precio":700, "categoria":"higiene", "imagen":"./imagenes/alcohol.webp","id":"10"},
     {"nombre":"pasta de dientes", "precio":600, "categoria":"higiene", "imagen":"./imagenes/pasta de dientes.jpg", "id":"11"},
     {"nombre":"trapo", "precio":200, "categoria":"limpieza", "imagen":"./imagenes/trapo.jpg", "id":"13"},
-    {"nombre":"shampoo", "precio":1100, "categoria":"higiene", "imagen":"./imagenes/shampoo.png", "id":"14"}
+    {"nombre":"shampoo", "precio":1100, "categoria":"higiene", "imagen":"./imagenes/shampoo.png", "id":"14", "cantidad":0}
 ]
